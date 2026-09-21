@@ -20,7 +20,7 @@ void Game::setupGame()
     int numPlayers;
     std::cout << "==========================\n";
     std::cout << "Welcome to the Medici Game!\n";
-    std::cout << "==========================\n";
+    std::cout << "==========================\n\n";
     std::cout << "Enter the number of players (2-6): ";
     std::cin >> numPlayers;
 
@@ -82,5 +82,19 @@ void Game::playDay()
     else
     {
         throw std::runtime_error("Deck is empty. Cannot draw cards for auction.");
+    }
+
+    scoreDay();
+}
+
+void Game::scoreDay()
+{
+    std::cout << "\nScoring for Day " << currentDay << ":\n";
+    for (Player& player : players)
+    {
+        int shipValue = player.getShipValue();
+        player.addScore(shipValue);
+        std::cout << player.getName() << "'s ship value: " << shipValue 
+                  << ", Total score: " << player.getScore() << "\n";
     }
 }

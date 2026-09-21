@@ -20,6 +20,7 @@ public:
     void setupGame();
     void playGame();
     void playDay();
+    void scoreDay();
 }; 
 
 #endif // GAME_H

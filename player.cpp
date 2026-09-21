@@ -14,6 +14,7 @@ Player::Player(std::string name, int money)
 {
     this->name = name;
     this->money = money;
+    score = 0;
 }
 
 // Returning the player's name, money, and ship size
@@ -42,6 +43,11 @@ int Player::getShipValue() const
     return totalValue;
 }
 
+int Player::getScore() const
+{
+    return score;
+}
+
 // Player actions
 void Player::addCard(const Card& card)
 {
@@ -68,4 +74,9 @@ void Player::showShip() const
     {
         std::cout << card << std::endl;
     }
+}
+
+void Player::addScore(int points)
+{
+    score += points;
 }

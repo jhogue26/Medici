@@ -11,6 +11,7 @@ class Player
         std::string name;
         int money;
         std::vector<Card> ship;
+        int score;
 
     public:
         // Constructors
@@ -21,11 +22,13 @@ class Player
         int getMoney() const;
         int getShipSize() const;
         int getShipValue() const;
+        int getScore() const;
 
         // Player actions
         void addCard(const Card& card);
         void spendMoney(int amount);
         void showShip() const;
+        void addScore(int points);
 };  
 
 #endif // PLAYER_H

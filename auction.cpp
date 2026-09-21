@@ -75,7 +75,21 @@ void Auction::startAuction(std::vector<Player>& players)
             }
         }
     }
+    if (highestBidder != -1)
+    {
+        std::cout << players[highestBidder].getName() << " wins the auction with a bid of " << currentBid << ".\n";
+        players[highestBidder].spendMoney(currentBid);
+        for (const Card& card : cards)
+        {
+            players[highestBidder].addCard(card);
+        }
+    }
+    else
+    {
+        std::cout << "No bids were placed. The auction ends with no winner.\n";
+    }
 }
+
 int Auction::getCardCount() const
 {
     return static_cast<int>(cards.size());
