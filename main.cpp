@@ -6,18 +6,23 @@
 */
 #include <iostream>
 #include "card.h"   
+#include "player.h"
 
 int main()
 {
+    Player player1("Justin", 40);
     Card card1("Cloth", 5);
     Card card2("Spice", 3);
-    Card card3("Gold", 10);
+ 
+    player1.addCard(card1);
+    player1.addCard(card2);
 
-    std::cout << "Testing Medici Cards: \n";
+    std::cout << "Testing Medici Cards and Player class:" << std::endl;
+    std::cout << "Player Name: " << player1.getName() << std::endl;
+    std::cout << "Player Money: " << player1.getMoney() << std::endl;
+    std::cout << "Player Ship Size: " << player1.getShipSize() << std::endl;
 
-    std::cout << card1 << std::endl;
-    std::cout << card2 << std::endl;
-    std::cout << card3 << std::endl;
+    player1.showShip();
 
     return 0;
 }
