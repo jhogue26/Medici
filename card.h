@@ -2,26 +2,22 @@
 #define CARD_H
 
 #include <iostream>
+#include <string>
 
-enum class Commodity {
-    Cloth,
-    Fur,
-    Grain,
-    Dye,
-    Spice,
-    Gold
-};
 
 class Card {
     private:
-        Commodity commodity;
+        std::string commodity;
         int value;
 
     public:
-        Card(Commodity commodity, int value);
-        Commodity getCommodity() const;
+        // Constructors
+        Card(); 
+        Card(std::string commodity, int value);
+        // Getters
+        std::string getCommodity() const;
         int getValue() const;
-        bool isGold() const;
+        // Overloaded operator to display card
         friend std::ostream& operator<<(std::ostream& os, const Card& card);
 };
 
