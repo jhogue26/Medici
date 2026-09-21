@@ -7,22 +7,25 @@
 #include <iostream>
 #include "card.h"   
 #include "player.h"
+#include "deck.h"
+#include "game.h"
+
 
 int main()
 {
-    Player player1("Justin", 40);
-    Card card1("Cloth", 5);
-    Card card2("Spice", 3);
- 
-    player1.addCard(card1);
-    player1.addCard(card2);
+    try
+    {
+        
+        Game game;
 
-    std::cout << "Testing Medici Cards and Player class:" << std::endl;
-    std::cout << "Player Name: " << player1.getName() << std::endl;
-    std::cout << "Player Money: " << player1.getMoney() << std::endl;
-    std::cout << "Player Ship Size: " << player1.getShipSize() << std::endl;
-
-    player1.showShip();
+        game.setupGame();
+        game.playGame();
+    }
+    catch (const std::exception& error)
+    {
+        std::cerr << "Error: " << error.what() << std::endl;
+    }
+    
 
     return 0;
 }
