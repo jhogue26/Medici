@@ -7,6 +7,7 @@
 
 #include "player.h"
 #include <iostream>
+#include <stdexcept>
 
 // Constructor
 Player::Player(std::string name, int money) 
@@ -31,14 +32,32 @@ int Player::getShipSize() const
     return static_cast<int>(ship.size());
 }
 
+int Player::getShipValue() const
+{
+    int totalValue = 0;
+    for (const Card& card : ship)
+    {
+        totalValue += card.getValue();
+    }
+    return totalValue;
+}
+
 // Player actions
 void Player::addCard(const Card& card)
 {
+    if (ship.size() >= 5)
+    {
+        throw std::runtime_error("A player's ship can hold a maximum of 5 cards.");
+    }
     ship.push_back(card);
 }
 
 void Player::spendMoney(int amount)
 {
+    if (amount > money)
+    {
+        throw std::runtime_error("Insufficient funds.");
+    }
     money -= amount;
 }
 

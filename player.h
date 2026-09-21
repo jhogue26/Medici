@@ -20,6 +20,7 @@ class Player
         std::string getName() const;
         int getMoney() const;
         int getShipSize() const;
+        int getShipValue() const;
 
         // Player actions
         void addCard(const Card& card);
