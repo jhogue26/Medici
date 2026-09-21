@@ -80,3 +80,8 @@ void Player::addScore(int points)
 {
     score += points;
 }
+
+void Player::resetShip()
+{
+    ship.clear();
+}

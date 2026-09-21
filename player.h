@@ -29,6 +29,7 @@ class Player
         void spendMoney(int amount);
         void showShip() const;
         void addScore(int points);
+        void resetShip();
 };  
 
 #endif // PLAYER_H

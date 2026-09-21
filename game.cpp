@@ -95,6 +95,7 @@ void Game::scoreDay()
         int shipValue = player.getShipValue();
         player.addScore(shipValue);
         std::cout << player.getName() << "'s ship value: " << shipValue 
-                  << ", Total score: " << player.getScore() << "\n";
+                  << "\nTotal score: " << player.getScore() << "\n";
+        player.resetShip(); // Reset ship for the next day
     }
 }
