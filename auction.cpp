@@ -17,7 +17,7 @@ Auction::Auction()
 
 void Auction::addCard(const Card& card)
 {
-    if (cards.size() >= 4)
+    if (cards.size() >= 3)
     {
         throw std::runtime_error("An auction must have between 1 and 3 cards.");
     }
@@ -44,30 +44,38 @@ void Auction::startAuction(std::vector<Player>& players)
     for (size_t i = 0; i < players.size(); ++i)
     {
         int bidAmount;
-        std::cout << players[i].getName() << ", enter your bid (or 0 to pass): ";
-        std::cin >> bidAmount;
+        bool validBid = false;
 
-        if (bidAmount > 0)
+        while (!validBid)
         {
-            placeBid(static_cast<int>(i), bidAmount);
-        }
-    }
+            std::cout << players[i].getName() << ", enter your bid (or 0 to pass): ";
+            std::cin >> bidAmount;
 
-    if (highestBidder != -1)
-    {
-        std::cout << players[highestBidder].getName() << " wins the auction with a bid of " << currentBid << "!\n";
-        players[highestBidder].spendMoney(currentBid);
-        for (const Card& card : cards)
-        {
-            players[highestBidder].addCard(card);
+            if (bidAmount == 0)
+            {
+                std::cout << players[i].getName() << " has passed.\n";
+                validBid = true;
+            }
+            else if (bidAmount > players[i].getMoney())
+            {
+                std::cout << "You dont have enough money.\n";
+            }
+            else
+            {
+                try
+                {
+                    placeBid(static_cast<int>(i), bidAmount);
+                    std::cout << players[i].getName() << " has placed a bid of " << bidAmount << ".\n";
+                    validBid = true;
+                }
+                catch (const std::runtime_error& e)
+                {
+                    std::cout << e.what() << " Try again.\n";
+                }   
+            }
         }
-    }
-    else
-    {
-        std::cout << "No bids were placed. The auction ends with no winner.\n";
     }
 }
-
 int Auction::getCardCount() const
 {
     return static_cast<int>(cards.size());
