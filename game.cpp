@@ -6,6 +6,7 @@
 */
 
 #include "game.h"
+#include "auction.h"
 #include <iostream>
 #include <stdexcept>
 
@@ -66,4 +67,20 @@ void Game::playGame()
 void Game::playDay()
 {
     std::cout << "\nDay " << currentDay << "!\n";
+
+    Auction auction;
+
+    // Draw cards for the auction
+    if (deck.getDeckSize() > 0)
+    {
+        Card card1 = deck.drawCard();
+        auction.addCard(card1);
+
+        auction.displayCards();
+    auction.startAuction(players);
+    }
+    else
+    {
+        throw std::runtime_error("Deck is empty. Cannot draw cards for auction.");
+    }
 }

@@ -4,11 +4,13 @@
 #include <vector>
 #include "player.h"
 #include "deck.h"
+#include "auction.h"
 
 class Game 
 {
 private:
     std::vector<Player> players;
+    Auction auction;    
     Deck deck;
     int currentDay;
 
