@@ -21,6 +21,7 @@ public:
     void playGame();
     void playDay();
     void scoreDay();
+    void displayWinner();
 }; 
 
 #endif // GAME_H

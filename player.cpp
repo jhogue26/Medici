@@ -6,6 +6,7 @@
 */
 
 #include "player.h"
+#include "exception.h"
 #include <iostream>
 #include <stdexcept>
 
@@ -53,7 +54,7 @@ void Player::addCard(const Card& card)
 {
     if (ship.size() >= 5)
     {
-        throw std::runtime_error("A player's ship can hold a maximum of 5 cards.");
+        throw ShipcapacityExceededException("A player's ship canhold a maximum of 5 cards.");
     }
     ship.push_back(card);
 }

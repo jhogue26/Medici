@@ -6,6 +6,7 @@
 */
 
 #include "auction.h"
+#include "exception.h"
 #include <iostream>
 #include <stdexcept>
 
@@ -109,7 +110,7 @@ void Auction::placeBid(int playerIndex, int bidAmount)
 {
     if (bidAmount <= currentBid)
     {
-        throw std::runtime_error("Bid must be higher than the current bid.");
+        throw InvalidBidException("Bid must be higher than the current bid.");
     }
     currentBid = bidAmount;
     highestBidder = playerIndex;

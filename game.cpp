@@ -61,7 +61,7 @@ void Game::playGame()
         playDay();
         currentDay++;
     }
-    std::cout << "\nGame over! Thank you for playing.\n";
+    displayWinner();
 }
 
 void Game::playDay()
@@ -97,5 +97,43 @@ void Game::scoreDay()
         std::cout << player.getName() << "'s ship value: " << shipValue 
                   << "\nTotal score: " << player.getScore() << "\n";
         player.resetShip(); // Reset ship for the next day
+    }
+}
+
+void Game::displayWinner()
+{
+    std::cout << "\n--- Final Scores ---\n";
+
+    for (size_t i = 1; i < players.size(); ++i)
+    {
+        std::cout << players[i].getName() << ": " << players[i].getScore() << "\n";
+    }
+
+    int highestScore = players[0].getScore();
+    int winnerIndex = 0;
+    bool tie = false;
+    
+    for (size_t i = 1; i < players.size(); ++i)
+    {
+
+        if (players[i].getScore() > highestScore)
+        {
+            highestScore = players[i].getScore();
+            winnerIndex = static_cast<int>(i);
+            tie = false;
+        }
+        else if (players[i].getScore() == highestScore)
+        {
+            tie = true;
+        }
+    }
+
+    if (tie)
+    {
+        std::cout << "\nIt's a tie! Multiple players have the highest score of " << highestScore << "!\n";
+    }
+    else
+    {
+        std::cout << "\n" << players[winnerIndex].getName() << " wins with a score of " << highestScore << "!\n";
     }
 }

@@ -6,6 +6,7 @@
 */
 
 #include "deck.h"
+#include "exception.h"
 #include <algorithm>
 #include <random>
 #include <stdexcept>
@@ -47,7 +48,7 @@ Card Deck::drawCard()
 {
     if (cards.empty())
     {
-        throw std::runtime_error("You cannot draw a card from an empty deck.");
+        throw EmptyDeckException("You cannot draw a card from an empty deck.");
     }
     Card card = cards.back();
     cards.pop_back();
