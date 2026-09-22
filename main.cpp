@@ -10,11 +10,17 @@
 #include "deck.h"
 #include "game.h"
 
+template <typename T>
+void displayMessage(const T& message)
+{
+    std::cout << message << std::endl;
+}
 
 int main()
 {
     try
     {
+        displayMessage("Starting the Medici Game...");
         
         Game game;
 
